@@ -4,7 +4,7 @@ html
     body.d-flex.text-center.flex-column.align-items-center
         h1.w-100.p-3.bg-primary.text-white.font-bold Tetz 채팅
         div#chat.w-50.h-75.p-5.bg-secondary.text-bottom.overflow-auto            
-        form(action="get")#form.w-50
+        form(action="get" onsubmit="return false;")#form.w-50
             input(type="text" placeholder="채팅을 입력하세요!")#input.w-75.m-3.p-3
             a#btn.p-3.btn.btn-primary 보내기
     script(src="public/chat.js") 

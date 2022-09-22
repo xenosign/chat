@@ -77,6 +77,12 @@
 
   let chats = [];
 
+  inputEl.addEventListener('keyup', (event) => {
+    if (event.keyCode === 13) {
+      btn.click();
+    }
+  });
+
   btn.addEventListener('click', () => {
     socket.send(
       JSON.stringify({
