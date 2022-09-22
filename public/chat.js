@@ -3,8 +3,8 @@
 // IIFE
 (() => {
   const socket = new WebSocket(`ws://${window.location.host}/chat`);
-  const btn = document.getElementById('btn');
   const inputEl = document.getElementById('input');
+  const btn = document.getElementById('btn');
   const chatEl = document.getElementById('chat');
 
   const adj = [
@@ -67,13 +67,13 @@
     { bg: 'alert-info', text: 'text-black' },
   ];
 
-  function makeRandomName(arr) {
+  function pickRandomArr(arr) {
     const randomIndex = Math.floor(Math.random() * arr.length);
     return arr[randomIndex];
   }
 
-  const madeName = `${makeRandomName(adj)} ${makeRandomName(member)}`;
-  const thema = makeRandomName(boot);
+  const madeName = `${pickRandomArr(adj)} ${pickRandomArr(member)}`;
+  const thema = pickRandomArr(boot);
 
   let chats = [];
 
