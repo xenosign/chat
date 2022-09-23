@@ -1,4 +1,5 @@
 // @ts-check
+
 // IIFE
 (() => {
   const socket = new WebSocket(`ws://${window.location.host}/chat`);
@@ -71,20 +72,10 @@
     return arr[randomIndex];
   }
 
-  const nickName = `${pickRandomArr(adj)} ${pickRandomArr(member)}`;
+  const madeName = `${pickRandomArr(adj)} ${pickRandomArr(member)}`;
   const thema = pickRandomArr(bootColor);
 
-  btn.addEventListener('click', () => {
-    const msg = inputEl.value;
-    const data = {
-      name: nickName,
-      msg,
-      bg: thema.bg,
-      text: thema.text,
-    };
-    socket.send(JSON.stringify(data));
-    inputEl.value = '';
-  });
+  let chats = [];
 
   inputEl.addEventListener('keyup', (event) => {
     if (event.keyCode === 13) {
@@ -92,44 +83,44 @@
     }
   });
 
-  const chats = [];
+  btn.addEventListener('click', () => {
+    socket.send(
+      JSON.stringify({
+        name: madeName,
+        msg: inputEl.value,
+        bg: thema.bg,
+        text: thema.text,
+      })
+    );
+    inputEl.value = '';
+  });
 
-  function drawChats(type, data) {
-    if (type === 'sync') {
-      chatEl.innerHTML = '';
-      chats.forEach(({ name, msg, bg, text }) => {
-        const msgEl = document.createElement('p');
-        msgEl.classList.add('p-2');
-        msgEl.classList.add(bg);
-        msgEl.classList.add(text);
-        msgEl.classList.add('fw-bold');
-        msgEl.innerText = `${name} : ${msg}`;
-        chatEl.appendChild(msgEl);
-        chatEl.scrollTop = chatEl.scrollHeight - chatEl.clientHeight;
-      });
-    } else if (type === 'chat') {
+  function drawChats() {
+    chatEl.innerHTML = '';
+    chats.forEach(({ name, msg, bg, text }) => {
       const msgEl = document.createElement('p');
       msgEl.classList.add('p-2');
-      msgEl.classList.add(data.bg);
-      msgEl.classList.add(data.text);
+      msgEl.classList.add(bg);
+      msgEl.classList.add(text);
       msgEl.classList.add('fw-bold');
-      msgEl.innerText = `${data.name} : ${data.msg}`;
+      msgEl.innerText = `${name} : ${msg}`;
       chatEl.appendChild(msgEl);
       chatEl.scrollTop = chatEl.scrollHeight - chatEl.clientHeight;
-    }
+    });
   }
 
   socket.addEventListener('message', (event) => {
-    const msgData = JSON.parse(event.data);
-    const { type, data } = msgData;
+    const msg = JSON.parse(event.data);
 
-    if (msgData.type === 'sync') {
+    if (msg.type === 'sync') {
+      const { type, data } = msg;
       const oldChats = data.chatsData;
       chats.push(...oldChats);
-      drawChats(msgData.type, data);
-    } else if (msgData.type === 'chat') {
+    } else if (msg.type === 'chat') {
+      const { type, data } = msg;
       chats.push(data);
-      drawChats(msgData.type, data);
     }
+
+    drawChats();
   });
 })();

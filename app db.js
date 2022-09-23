@@ -37,7 +37,6 @@ app.ws.use(
     );
     const chatsData = await chats.toArray();
 
-    // type 을 sync 로 전달하여 이전 채팅 내역임을 알려기
     ctx.websocket.send(
       JSON.stringify({
         type: 'sync',
@@ -61,10 +60,8 @@ app.ws.use(
       );
     });
 
-    // 다른 코드들
     ctx.websocket.on('message', async (message) => {
       const chat = JSON.parse(message);
-
       const insertClient = await _client;
       const chatCursor = insertClient.db('kdt1').collection('chats');
       await chatCursor.insertOne({
@@ -72,7 +69,8 @@ app.ws.use(
         createdAt: new Date(),
       });
 
-      // 사용자로 부터 입력 받은 채팅에는 type: 'chat' 추가
+      // const { name, msg, bg, text } = chat;
+
       server.clients.forEach((client) => {
         client.send(
           JSON.stringify({
