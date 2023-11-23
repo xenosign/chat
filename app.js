@@ -12,7 +12,7 @@ const mongoClient = require('./public/mongo');
 const _client = mongoClient.connect();
 
 const app = websockify(new Koa());
-const PORT = 4500;
+const PORT = 3000;
 
 const pug = new Pug({
   viewPath: path.resolve(__dirname, './views'),

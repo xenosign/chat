@@ -29,6 +29,22 @@
     '눈빛이 초롱초롱한',
     '치킨이 땡기는',
     '술이 땡기는',
+    '페이커 팬인',
+    '노래 듣는',
+    '카톡 중인',
+    '커리 팬인',
+    '노래 부르는',
+    '곧 생일인',
+    '즐거운',
+    '행복한',
+    '상큼한',
+    '성실한',
+    '솔직한',
+    '진지한',
+    '현명한',
+    '잰틀한',
+    '침착한',
+    '신실한',
   ];
   const member = [
     '유림님',
@@ -51,6 +67,30 @@
     '승수님',
     '해성님',
     '허원님',
+    '슬기님',
+    '계환님',
+    '성현님',
+    '은정님',
+    '정혁님',
+    '호준님',
+    '성재님',
+    '성희님',
+    '지원님',
+    '진솔님',
+    '민선님',
+    '민영님',
+    '수빈님',
+    '상아님',
+    '재연님',
+    '윤제님',
+    '유림님',
+    '찬호님',
+    '경은님',
+    '성희님',
+    '두루님',
+    '인영님',
+    '지영님',
+    '성범님',
   ];
 
   const bootColor = [
@@ -102,7 +142,7 @@
         msgEl.classList.add('p-2');
         msgEl.classList.add(bg);
         msgEl.classList.add(text);
-        msgEl.classList.add('fw-bold');
+        msgEl.classList.add('rounded');
         msgEl.innerText = `${name} : ${msg}`;
         chatEl.appendChild(msgEl);
         chatEl.scrollTop = chatEl.scrollHeight - chatEl.clientHeight;
@@ -113,6 +153,7 @@
       msgEl.classList.add(data.bg);
       msgEl.classList.add(data.text);
       msgEl.classList.add('fw-bold');
+      msgEl.classList.add('rounded');
       msgEl.innerText = `${data.name} : ${data.msg}`;
       chatEl.appendChild(msgEl);
       chatEl.scrollTop = chatEl.scrollHeight - chatEl.clientHeight;
