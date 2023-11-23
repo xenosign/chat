@@ -97,7 +97,7 @@
     { bg: 'bg-primary', text: 'text-white' },
     { bg: 'bg-success', text: 'text-white' },
     { bg: 'bg-warning', text: 'text-black' },
-    { bg: 'bg-info', text: 'text-white' },
+    { bg: 'bg-info', text: 'text-black' },
     { bg: 'alert-primary', text: 'text-black' },
     { bg: 'alert-secondary', text: 'text-black' },
     { bg: 'alert-success', text: 'text-black' },
@@ -151,7 +151,6 @@
       const msgEl = document.createElement('p');
       msgEl.classList.add('p-2');
       msgEl.classList.add(data.text);
-      msgEl.classList.add('fw-bold');
       msgEl.classList.add('rounded');
       msgEl.innerText = `${data.name} : ${data.msg}`;
       chatEl.appendChild(msgEl);
