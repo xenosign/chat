@@ -54,7 +54,6 @@ app.ws.use(
           data: {
             name: '서버',
             msg: `새로운 유저가 참여 했습니다. 현재 유저 수 ${server.clients.size}`,
-            bg: 'bg-danger',
             text: 'text-white',
           },
         })
@@ -93,8 +92,7 @@ app.ws.use(
             data: {
               name: '서버',
               msg: `유저 한명이 나갔습니다. 현재 유저 수 ${server.clients.size}`,
-              bg: 'bg-black',
-              text: 'text-white',
+              text: 'text-black',
             },
           })
         );

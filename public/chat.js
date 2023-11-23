@@ -135,6 +135,7 @@
   const chats = [];
 
   function drawChats(type, data) {
+    console.log(type, data);
     if (type === 'sync') {
       chatEl.innerHTML = '';
       chats.forEach(({ name, msg, bg, text }) => {
@@ -147,7 +148,7 @@
         chatEl.appendChild(msgEl);
         chatEl.scrollTop = chatEl.scrollHeight - chatEl.clientHeight;
       });
-    } else if (type === 'chat') {
+    } else if (type === 'server') {
       const msgEl = document.createElement('p');
       msgEl.classList.add('p-2');
       msgEl.classList.add(data.text);
@@ -155,6 +156,18 @@
       msgEl.innerText = `${data.name} : ${data.msg}`;
       chatEl.appendChild(msgEl);
       chatEl.scrollTop = chatEl.scrollHeight - chatEl.clientHeight;
+    } else if (type === 'chat') {
+      chatEl.innerHTML = '';
+      chats.forEach(({ name, msg, bg, text }) => {
+        const msgEl = document.createElement('p');
+        msgEl.classList.add('p-2');
+        msgEl.classList.add(bg);
+        msgEl.classList.add(text);
+        msgEl.classList.add('rounded');
+        msgEl.innerText = `${name} : ${msg}`;
+        chatEl.appendChild(msgEl);
+        chatEl.scrollTop = chatEl.scrollHeight - chatEl.clientHeight;
+      });
     }
   }
 
