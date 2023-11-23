@@ -150,7 +150,6 @@
     } else if (type === 'chat') {
       const msgEl = document.createElement('p');
       msgEl.classList.add('p-2');
-      msgEl.classList.add(data.bg);
       msgEl.classList.add(data.text);
       msgEl.classList.add('fw-bold');
       msgEl.classList.add('rounded');
