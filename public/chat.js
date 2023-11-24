@@ -127,7 +127,8 @@
   });
 
   inputEl.addEventListener('keyup', (event) => {
-    if (event.keyCode === 13) {
+    // mac 에러 수정
+    if (event.keyCode === 13 && inputEl?.value !== '') {
       btn.click();
     }
   });
@@ -135,7 +136,6 @@
   const chats = [];
 
   function drawChats(type, data) {
-    console.log(type, data);
     if (type === 'sync') {
       chatEl.innerHTML = '';
       chats.forEach(({ name, msg, bg, text }) => {
@@ -148,14 +148,6 @@
         chatEl.appendChild(msgEl);
         chatEl.scrollTop = chatEl.scrollHeight - chatEl.clientHeight;
       });
-    } else if (type === 'server') {
-      const msgEl = document.createElement('p');
-      msgEl.classList.add('p-2');
-      msgEl.classList.add(data.text);
-      msgEl.classList.add('rounded');
-      msgEl.innerText = `${data.name} : ${data.msg}`;
-      chatEl.appendChild(msgEl);
-      chatEl.scrollTop = chatEl.scrollHeight - chatEl.clientHeight;
     } else if (type === 'chat') {
       chatEl.innerHTML = '';
       chats.forEach(({ name, msg, bg, text }) => {
